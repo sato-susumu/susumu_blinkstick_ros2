@@ -1,5 +1,5 @@
 # susumu_blinkstick_ros2
-[BlinkStick](https://www.blinkstick.com/)というUSBで制御できるLEDできる製品を使って、LEDアニメーションを実現するROS2パッケージです。
+[BlinkStick](https://www.blinkstick.com/)というUSBで制御できるLEDを使って、LEDアニメーションを実現するROS2パッケージです。
 <br>
 <br>
 
