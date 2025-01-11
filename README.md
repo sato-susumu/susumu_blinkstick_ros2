@@ -2,6 +2,8 @@
 [BlinkStick](https://www.blinkstick.com/)というUSBで制御できるLEDを使って、LEDアニメーションを実現するROS2パッケージです。
 <br>
 <br>
+![サンプル画像](docs/blinkstick_strip.gif)
+<br>
 
 ## 動作確認環境
 CPU: Intel  
