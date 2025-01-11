@@ -14,9 +14,12 @@ class LEDController:
     def __init__(self, led_count: int = 8) -> None:
         self.led_count: int = led_count
         self.colors: List[Tuple[int, int, int]] = [(0, 0, 0)] * led_count
+        self.last_update_time: float = 0.0
         self.bstick = blinkstick.find_first()
         if not self.bstick:
             raise Exception("BlinkStick not found")
+        # 下記方法でエラーを抑制できるが根本解決にはならない
+        # self.bstick.set_error_reporting(False)
 
     def apply_trail(self, decay_rate: float) -> None:
         new_colors = []
@@ -34,13 +37,23 @@ class LEDController:
     def set_all_color(self, color: Tuple[int, int, int]) -> None:
         self.colors = [color] * self.led_count
 
-    def update_hardware(self) -> None:
+    def update_hardware(self, force_update: bool = False) -> None:
+        current_time = time.time()
+
+        if force_update:
+            time.sleep(0.03)
+        else:
+            if current_time - self.last_update_time < 0.03:
+                return
+
         for i, (r, g, b) in enumerate(self.colors):
             self.bstick.set_color(channel=0, index=i, red=r, green=g, blue=b)
 
+        self.last_update_time = current_time
+
     def turn_off(self) -> None:
         self.colors = [(0, 0, 0)] * self.led_count
-        self.update_hardware()
+        self.update_hardware(force_update=True)
 
 
 class AnimationManager:
