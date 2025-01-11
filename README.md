@@ -169,7 +169,26 @@ blinkstick --pulse 0000FF --repeats 3
 ```
 青色で徐々に明るく暗くを3回繰り返す
 
-### トラブルシューティング：Access denied
+## トラブルシューティング
+### [Errno 5] Input/Output Error
+```
+Exception in thread Thread-1 (_worker_loop):
+Traceback (most recent call last):
+  File "/home/taro/.local/lib/python3.10/site-packages/blinkstick/blinkstick.py", line 252, in _usb_ctrl_transfer
+    return self.device.ctrl_transfer(bmRequestType, bRequest, wValue, wIndex, data_or_wLength)
+  File "/home/taro/.local/lib/python3.10/site-packages/usb/core.py", line 1082, in ctrl_transfer
+    ret = self._ctx.backend.ctrl_transfer(
+  File "/home/taro/.local/lib/python3.10/site-packages/usb/backend/libusb1.py", line 893, in ctrl_transfer
+    ret = _check(self.lib.libusb_control_transfer(
+  File "/home/taro/.local/lib/python3.10/site-packages/usb/backend/libusb1.py", line 604, in _check
+    raise USBError(_strerror(ret), ret, _libusb_errno[ret])
+usb.core.USBError: [Errno 5] Input/Output Error
+```
+根本的な原因や解決方法はよくわかっていません。  
+PCのUSBポートとBlinkStickを直接接続したときに発生しました。   
+USBハブを経由して接続することで発生しなくなりました。。。  
+
+### Access denied
 ```
 blinkstick random
 ```
