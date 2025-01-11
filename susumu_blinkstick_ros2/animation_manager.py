@@ -75,7 +75,7 @@ class AnimationManager:
     def add_animation(self, anim: BaseAnimation) -> None:
         self.animation_queue.put(anim)
 
-    def stop(self) -> None:
+    def destory(self) -> None:
         self.running = False
         self.animation_queue.put(None)
         self.thread.join()

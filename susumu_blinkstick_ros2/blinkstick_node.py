@@ -109,8 +109,8 @@ class BlinkstickNode(Node):
         elif pat == "OUTWARD":
             anim = OutwardAnimation(prio, dur, c1, br, dec, spd)
         else:
-            self.get_logger().warn(f"Unknown pattern: {pat}, fallback to SOLID")
-            anim = SolidAnimation(prio, dur, c1, br, dec, spd)
+            self.get_logger().warn(f"Unknown pattern: {pat}")
+            return
 
         self.manager.add_animation(anim)
 
@@ -156,7 +156,7 @@ class BlinkstickNode(Node):
 
     def destroy_node(self) -> bool:
         self.get_logger().info("Shutting down BlinkstickNode")
-        self.manager.stop()
+        self.manager.destory()
         return super().destroy_node()
 
 
