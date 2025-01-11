@@ -29,6 +29,13 @@ class BaseAnimation:
         return (r, g, b)
 
 
+class StopAnimation(BaseAnimation):
+    def __init__(self, priority: int, duration: float, color: Tuple[int, int, int], brightness: float, decay_rate: float, speed: float):
+        super().__init__(priority, duration, brightness, decay_rate, speed)
+
+    def _draw_pattern(self, dt, led_controller, elapsed) -> None:
+        pass
+
 class SolidAnimation(BaseAnimation):
     def __init__(self, priority: int, duration: float, color: Tuple[int, int, int], brightness: float, decay_rate: float, speed: float):
         super().__init__(priority, duration, brightness, decay_rate, speed)

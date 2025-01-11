@@ -15,7 +15,7 @@ from susumu_blinkstick_ros2.animations import (
     RightToLeftAnimation,
     WaveAnimation,
     InwardAnimation,
-    OutwardAnimation
+    OutwardAnimation, StopAnimation
 )
 
 
@@ -90,7 +90,9 @@ class BlinkstickNode(Node):
             c2 = (255, 255, 255)
 
         # パターンに応じて生成
-        if pat == "BLINK":
+        if pat == "STOP":
+            anim = StopAnimation(prio, dur, c1, br, dec, spd)
+        elif pat == "BLINK":
             anim = BlinkAnimation(prio, dur, c1, br, dec, spd)
         elif pat == "SOLID":
             anim = SolidAnimation(prio, dur, c1, br, dec, spd)

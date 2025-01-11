@@ -103,8 +103,7 @@ class AnimationManager:
             if self.current_animation:
                 elapsed = now - self.start_time
                 if self.current_animation.is_finished(elapsed):
-                    self.current_animation = None
-                    self.led_controller.turn_off()
+                    self._stop_current_anim()
                 else:
                     self.current_animation.draw_frame(dt, self.led_controller, elapsed)
                     self.led_controller.update_hardware()
@@ -115,3 +114,8 @@ class AnimationManager:
         self.current_animation = anim
         self.start_time = time.time()
         self.led_controller.turn_off()
+
+    def _stop_current_anim(self) -> None:
+        self.current_animation = None
+        self.led_controller.turn_off()
+
