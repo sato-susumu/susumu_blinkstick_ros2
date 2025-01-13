@@ -39,12 +39,6 @@ ros2 run susumu_blinkstick_ros2 blinkstick_node
 <br>
 
 ## LEDアニメーション指示
-### STOP
-```bash
-ros2 topic pub -1 /led susumu_ros2_interfaces/LED "{pattern: 'STOP', priority: 99999, duration: 0.0 }"
-```
-*   他のアニメーションを停止させるための特殊な指定。`priority`で優先度を指定。優先度が高いほど他のアニメーションよりも優先されます。
-
 ### SOLID
 ```bash
 ros2 topic pub -1 /led susumu_ros2_interfaces/LED "{pattern: 'SOLID'}"
@@ -92,6 +86,12 @@ ros2 topic pub -1 /led susumu_ros2_interfaces/LED "{pattern: 'INWARD', duration:
 ros2 topic pub -1 /led susumu_ros2_interfaces/LED "{pattern: 'OUTWARD', duration: 10.0, color1: 'pink', speed: 8.0}"
 ```
 *   指定した色が内側から外側へ移動するように点灯します。
+### STOP
+```bash
+ros2 topic pub -1 /led susumu_ros2_interfaces/LED "{pattern: 'STOP', priority: 99999, duration: 0.0 }"
+```
+*   他のアニメーションを停止させるための特殊な指定。`priority`で優先度を指定。優先度が高いほど他のアニメーションよりも優先されます。  
+
 <br>
 <br>
 
